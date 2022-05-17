@@ -1,0 +1,112 @@
+#Calculator 
+#Solanke Tejas Ashok
+#28/12/2021
+
+from tkinter import *
+
+root = Tk()
+root.title("Calculator")
+root.configure(bg='black')
+root.geometry("640x300")
+root.minsize(300, 340)
+root.maxsize(300, 340)
+
+# FRAMES FOR DISPLAY AND BUTTONS_______________________________________________________________________________________
+frame1 = LabelFrame(root, borderwidth=0, bg='#000000', pady=11)
+frame1.place(x=15, y=10)
+
+e = Entry(frame1, width=11, borderwidth=0, font='Helvetica 30', bg="black", fg="white", justify=RIGHT)
+e.grid(row=0, column=0, columnspan=4, padx=10, pady=1)
+
+frame2 = LabelFrame(root, borderwidth=0, bg="black", padx=8, pady=10)
+frame2.place(x=15, y=90)
+
+frame3 = LabelFrame(root, borderwidth=0, bg="black", padx=8, pady=10)
+frame3.place(x=207, y=90)
+
+# FRAMES FOR DISPLAY AND BUTTONS_______________________________________________________________________________________
+
+
+def btClick(n):
+    st = e.get()
+    if n != "=" and n != "C" and n != "D":
+        if st == '0' or st == '00':
+            e.delete(0, len(st))
+            e.insert(len(st), n)
+        else:
+            e.insert(len(st), n)
+    else:
+        if n == "=":
+            e.delete(0, len(st))
+            e.insert(len(st), eval(st))
+        elif n == "C":
+            e.delete(0, len(st))
+            e.insert(0, 0)
+        elif n == "D":
+            e.delete(len(st)-1)
+
+
+# BUTTONS FOR FRAME 2__________________________________________________________________________________________________
+bC = Button(frame2, text="C", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='red', padx=20, pady=10, command=lambda: btClick('C'))
+bC.grid(row=0, column=0)
+
+bFDiv = Button(frame2, text="//", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='red', padx=20, pady=10, command=lambda: btClick('//'))
+bFDiv.grid(row=0, column=1)
+
+bDel = Button(frame2, text="del", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='red', padx=20, pady=10, command=lambda: btClick('D'))
+bDel.grid(row=0, column=2)
+
+b7 = Button(frame2, text="7", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('7'))
+b7.grid(row=1, column=0)
+
+b8 = Button(frame2, text="8", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('8'))
+b8.grid(row=1, column=1)
+
+b9 = Button(frame2, text="9", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('9'))
+b9.grid(row=1, column=2)
+
+b4 = Button(frame2, text="4", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('4'))
+b4.grid(row=2, column=0)
+
+b5 = Button(frame2, text="5", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('5'))
+b5.grid(row=2, column=1)
+
+b6 = Button(frame2, text="6", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('6'))
+b6.grid(row=2, column=2)
+
+b1 = Button(frame2, text="1", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('1'))
+b1.grid(row=3, column=0)
+
+b2 = Button(frame2, text="2", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('2'))
+b2.grid(row=3, column=1)
+
+b3 = Button(frame2, text="3", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('3'))
+b3.grid(row=3, column=2)
+
+b0 = Button(frame2, text="0", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('0'))
+b0.grid(row=4, column=1)
+
+b00 = Button(frame2, text="00", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('00'))
+b00.grid(row=4, column=0)
+
+bDot = Button(frame2, text=".", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='#ffffff', padx=20, pady=10, command=lambda: btClick('.'))
+bDot.grid(row=4, column=2)
+# BUTTONS FOR FRAME 2__________________________________________________________________________________________________
+
+# BUTTONS FOR FRAME 3__________________________________________________________________________________________________
+bdiv = Button(frame3, text="/", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='red', padx=21, pady=10, command=lambda: btClick('/'))
+bdiv.grid(row=3, column=0)
+
+bx = Button(frame3, text="x", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='red', padx=20, pady=10, command=lambda: btClick('*'))
+bx.grid(row=2, column=0)
+
+bm = Button(frame3, text="-", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='red', padx=21, pady=10, command=lambda: btClick('-'))
+bm.grid(row=1, column=0)
+
+bp = Button(frame3, text="+", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='red', padx=20, pady=10, command=lambda: btClick('+'))
+bp.grid(row=0, column=0)
+
+beq = Button(frame3, text="=", font='Helvetica', activebackground="black", borderwidth=0, bg='#000000', fg='red', padx=20, pady=10, command=lambda: btClick('='))
+beq.grid(row=4, column=0)
+# BUTTONS FOR FRAME 2__________________________________________________________________________________________________
+root.mainloop()
